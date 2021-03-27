@@ -1,0 +1,10 @@
+function acf_wp_editor_custom_height() {
+	?>
+		<script type="text/javascript">
+			(function($) {
+				$( '.acf-field .wp-editor-area' ).height( '150px' );
+			})(jQuery);
+		</script>
+	<?php
+}
+add_action( 'acf/input/admin_footer', 'acf_wp_editor_custom_height' );
