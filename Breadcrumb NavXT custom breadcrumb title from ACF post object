@@ -1,7 +1,7 @@
 function cpt_custom_bcn_breadcrumb_title( $title, $type, $id ) {
 	$post = get_post();
 	$post_id = $post->ID;
-	if ( is_singular('my_cpt') && $post_id == $id ) {
+	if ( is_singular( 'my_cpt' ) && $post_id == $id ) {
 		$acf_post_object = get_field( 'acf_post_object' );
 			if ( $acf_post_object ) {
 				$acf_post_object_title = get_field( 'acf_custom_field', $acf_post_object->ID );
