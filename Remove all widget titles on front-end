@@ -1,0 +1,6 @@
+function remove_all_widget_titles( $widget_title ) {
+    if ( $widget_title ) {
+		return null;
+	}
+}
+add_filter( 'widget_title', 'remove_all_widget_titles' );
