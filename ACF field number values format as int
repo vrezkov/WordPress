@@ -1,5 +1,0 @@
-function acf_field_number_vals_format_as_int( $value, $post_id, $field ) {
-	$value = (int)$value;
-	return $value;
-}
-add_filter( 'acf/format_value/type=number', 'acf_field_number_vals_format_as_int', 10, 3 );

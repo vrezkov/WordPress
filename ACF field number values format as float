@@ -1,0 +1,5 @@
+function acf_field_number_vals_format_as_float( $value, $post_id, $field ) {
+	$value = (float)$value;
+	return $value;
+}
+add_filter( 'acf/format_value/type=number', 'acf_field_number_vals_format_as_float', 10, 3 );
