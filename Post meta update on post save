@@ -1,0 +1,27 @@
+function cpt_post_meta_update_on_save_post( $post_id, $post ) {
+	
+	$post_type = get_post_type( $post_id );
+
+	if ( $post_type !== 'my_cpt_one' && $post_type !== 'my_cpt_two' ) {
+		return;
+	}
+
+	if ( !wp_is_post_revision( $post_id ) ) {
+
+		$my_value = null;
+
+		if ( !empty( get_post_meta( $post_id, 'my_field', true ) ) ) {
+			$my_field = get_post_meta( $post_id, 'my_field', true );
+			$my_value = $my_field;
+		}
+		
+		if ( $my_value ) {
+			update_post_meta( $post_id, 'custom_field', $my_value );
+		} else {
+			delete_post_meta( $post_id, 'custom_field' );
+		}
+
+	}
+}
+
+add_action( 'save_post', 'cpt_post_meta_update_on_save_post', 10, 2 );
