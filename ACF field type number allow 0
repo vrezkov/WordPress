@@ -1,0 +1,14 @@
+function acf_field_number_allow_zero( $value, $post_id, $field ) {
+	if ( $value === null || $value === '' ) {
+		$value = null;
+	} elseif ( (float)$value === 0 ) {
+		$value = 0;
+	} else {
+		$value = (float)$value;
+	}
+	return $value;
+}
+add_filter( 'acf/format_value/type=number', 'acf_field_number_allow_zero', 10, 3 );
+
+// then use as follows:
+// if ( $var !== null ) {
