@@ -1,0 +1,34 @@
+function custom_sf_query_args( $query_args ) {
+	
+	if ( $query_args['meta_key'] === 'custom_meta_min' ) {
+		$query_args['orderby'] = array(
+			'meta_value_num' => 'asc',
+			'title' => 'asc'
+		);
+	}
+	
+	if ( $query_args['meta_key'] === 'custom_meta_max' ) {
+		$query_args['orderby'] = array(
+			'meta_value_num' => 'desc',
+			'title' => 'asc'
+		);
+	}
+
+	if ( $query_args['meta_key'] === 'ratings_average' ) {
+		$query_args['meta_query'] = array(
+			'product_rating_count' => array(
+				'key' => 'ratings_users',
+				'orderby' => 'meta_value_num',
+        'order' => 'desc'
+			)
+		);
+		$query_args['orderby'] = array(
+			'meta_value_num' => 'desc',
+			'product_rating_count' => 'desc',
+			'title' => 'asc'
+		);
+	}
+
+	return $query_args;
+}
+add_filter( 'sf_edit_query_args', 'custom_sf_query_args', 20, 2 );
