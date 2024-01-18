@@ -1,0 +1,7 @@
+function disable_customizer_capabilities( $caps, $cap, $user_id, $args ) {
+  if ( 'customize' === $cap ) {
+        return false;
+    }
+    return $caps;
+}
+add_filter( 'map_meta_cap', 'disable_customizer_capabilities', 10, 4 );
